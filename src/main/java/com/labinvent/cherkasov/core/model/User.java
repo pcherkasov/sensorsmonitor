@@ -36,9 +36,9 @@ public class User {
     @Column
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
-    private String role;
+    private Role role;
 
     @Column(name = "deleted")
     private boolean deleted;
