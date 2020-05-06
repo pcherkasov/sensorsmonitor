@@ -1,28 +1,27 @@
 spring:
   base:
     datasource:
-      username: root
-      password: root
+      username: sa
+      password:
       driver-class-name: org.h2.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:h2:mem:monitordb
-      connection-timeout: 30000
-      prepStmtCacheSize: 250
-      prepStmtCacheSqlLimit: 2048
-      useServerPrepStmts: true
+      jdbc-url: jdbc:h2:mem:monitordb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     database: h2
     hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-        temp:
-          use_jdbc_metadata_defaults: false
-    open-in-view: true
+      ddl-auto: update
     show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /console
   liquibase:
     enabled: true
     change-log: classpath:migrations/master.xml
-    user: root
-    password: root
+    user: sa
+    password:
+  jackson:
+    default-property-inclusion: always
+    serialization:
+      write-dates-as-timestamps: false

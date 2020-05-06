@@ -27,13 +27,13 @@ import java.time.LocalDateTime;
 public class Sensor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(length = 30)
     private String name;
 
-    @Column
+    @Column(length = 15)
     private String model;
 
     @Column(name = "range_from")
@@ -50,10 +50,10 @@ public class Sensor {
     @JoinColumn(name = "unit_id")
     private Unit unit;
 
-    @Column
+    @Column(length = 40)
     private String location;
 
-    @Column
+    @Column(length = 200)
     private String description;
 
     @Column(name = "deleted")
