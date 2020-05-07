@@ -1,14 +1,16 @@
+server:
+  port: 8080
 spring:
   base:
     datasource:
-      username: sa
-      password:
-      driver-class-name: org.h2.Driver
+      username: postgres
+      password: root
+      driver-class-name: org.postgresql.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:h2:mem:monitordb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      jdbc-url: jdbc:postgresql://localhost:16000/monitor_db
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    database: h2
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    database: postgresql
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -19,7 +21,7 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:migrations/master.xml
-    user: sa
+    user:
     password:
   jackson:
     default-property-inclusion: always

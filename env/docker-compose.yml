@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  postgre.monitor:
+    restart: on-failure
+    container_name: sensor-monitor-container
+    build:
+      context: ./postgresql
+    ports:
+    - '16000:5432'
+    environment:
+      POSTGRES_PASSWORD: root

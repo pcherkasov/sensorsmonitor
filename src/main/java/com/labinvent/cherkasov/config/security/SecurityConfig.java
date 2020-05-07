@@ -19,22 +19,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder(10);
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/index", "/login").permitAll()
-                .antMatchers("/api/sensor/**").authenticated();
-    }
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/api/sensor/**").authenticated();
+//    }
 
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+//        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
         auth.inMemoryAuthentication()
-                .withUser("user").password("{noop}1111").roles("VIEWER")
+                .withUser("user").password("$2y$10$v2m2sGcDECgUq9FjlO622.gzPx1RlJPN1kFnzKEu7N5XNHWTTXzY6").roles("VIEWER")
                 .and()
                 .withUser("admin").password("{noop}1111").roles("ADMINISTRATOR");
     }
