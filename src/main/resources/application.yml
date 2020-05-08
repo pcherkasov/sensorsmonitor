@@ -12,18 +12,17 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL95Dialect
     database: postgresql
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
-  h2:
-    console:
-      enabled: true
-      path: /console
   liquibase:
     enabled: true
     change-log: classpath:migrations/master.xml
-    user:
-    password:
+    user: liquibase_user
+    password: password
   jackson:
     default-property-inclusion: always
     serialization:
       write-dates-as-timestamps: false
+logging:
+  level:
+    web: DEBUG

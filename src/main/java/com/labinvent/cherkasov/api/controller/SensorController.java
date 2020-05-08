@@ -7,17 +7,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/sensor")
+@RequestMapping(value = "/")
 @RequiredArgsConstructor
 public class SensorController {
 
     private final SensorFacade sensorFacade;
 
-    @GetMapping
+    @GetMapping(value = "/api/sensor")
     public List<SensorDto> findAll(){
-        return sensorFacade.findAll();
+        return new ArrayList<>();
     }
+
+    @GetMapping(value = "/")
+    public String test(){
+        return "Test string";
+    }
+
+
 }

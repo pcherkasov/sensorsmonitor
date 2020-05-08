@@ -5,4 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <include file="2020-04-28--01-create-database.xml" relativeToChangelogFile="true"/>
+    <include file="2020-05-07--01-filling-in-db-with-test-users.xml" relativeToChangelogFile="true"/>
+    <include file="2020-05-07--02-add-role-table.xml" relativeToChangelogFile="true"/>
+    <include file="2020-05-07--03-filling-in-role-table.xml" relativeToChangelogFile="true"/>
+    <include file="2020-05-08--01-add-sensors.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

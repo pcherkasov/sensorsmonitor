@@ -9,7 +9,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,7 +19,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Set;
@@ -28,6 +32,7 @@ import java.util.Set;
 @Builder
 @Entity
 @Where(clause = "deleted = 'false'")
+@Table(name = "user", schema = "public")
 public class User implements UserDetails {
 
     @Id
@@ -40,8 +45,7 @@ public class User implements UserDetails {
     @Column
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id")
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     @Column(name = "deleted")
