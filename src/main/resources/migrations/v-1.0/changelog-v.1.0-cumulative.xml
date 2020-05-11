@@ -9,4 +9,5 @@
     <include file="2020-05-07--02-add-role-table.xml" relativeToChangelogFile="true"/>
     <include file="2020-05-07--03-filling-in-role-table.xml" relativeToChangelogFile="true"/>
     <include file="2020-05-08--01-add-sensors.xml" relativeToChangelogFile="true"/>
+    <include file="2020-05-11--01-filling-in-sensor-table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

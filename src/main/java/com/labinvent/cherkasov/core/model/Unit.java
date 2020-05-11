@@ -31,11 +31,4 @@ public class Unit {
     @OneToMany(mappedBy = "unit")
     private List<Sensor> sensors;
 
-    @Column(name = "created", nullable = false, updatable = false)
-    @CreatedDate
-    private LocalDateTime created;
-
-    @Column(name = "modified", nullable = false)
-    @LastModifiedDate
-    private LocalDateTime modified;
 }

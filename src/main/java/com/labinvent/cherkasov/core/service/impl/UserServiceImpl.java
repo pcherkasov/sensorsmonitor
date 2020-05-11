@@ -2,7 +2,6 @@ package com.labinvent.cherkasov.core.service.impl;
 
 import com.labinvent.cherkasov.core.exception.ResourceNotFoundException;
 import com.labinvent.cherkasov.core.model.User;
-import com.labinvent.cherkasov.core.repository.RoleRepository;
 import com.labinvent.cherkasov.core.repository.UserRepository;
 import com.labinvent.cherkasov.core.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
 
     @Override
     public User save(User user) {

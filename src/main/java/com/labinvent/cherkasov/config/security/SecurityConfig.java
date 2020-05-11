@@ -31,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .successForwardUrl("/api/sensor")
                 .permitAll()
+                .defaultSuccessUrl("/index.html")
                 .and()
                 .httpBasic();
     }

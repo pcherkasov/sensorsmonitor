@@ -15,6 +15,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <addAutoIncrement tableName="role" columnName="id" columnDataType="bigserial"/>
     </changeSet>
 
     <changeSet logicalFilePath="/v-1.0/2020-05-07--02-add-role-table.xml"
@@ -31,6 +32,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <addAutoIncrement tableName="role_user" columnName="id" columnDataType="bigserial"/>
     </changeSet>
 
     <changeSet logicalFilePath="/v-1.0/2020-05-07--02-add-role-table.xml"

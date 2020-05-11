@@ -11,20 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/api/sensor")
 @RequiredArgsConstructor
 public class SensorController {
 
     private final SensorFacade sensorFacade;
 
-    @GetMapping(value = "/api/sensor")
+    @GetMapping()
     public List<SensorDto> findAll(){
-        return new ArrayList<>();
-    }
-
-    @GetMapping(value = "/")
-    public String test(){
-        return "Test string";
+        return sensorFacade.findAll();
     }
 
 

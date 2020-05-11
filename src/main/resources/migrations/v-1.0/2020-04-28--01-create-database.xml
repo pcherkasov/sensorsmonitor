@@ -18,12 +18,13 @@
                 <constraints nullable="false"/>
             </column>
             <column name="deleted" type="boolean" defaultValueBoolean="false"/>
-            <column name="created" type="datetime">
+            <column name="created" type="datetime" defaultValueComputed="now()" >
                 <constraints nullable="false"/>
             </column>
-            <column name="modified" type="datetime">
+            <column name="modified" type="datetime" defaultValueComputed="now()">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <addAutoIncrement tableName="user" columnName="id" columnDataType="bigserial"/>
     </changeSet>
 </databaseChangeLog>

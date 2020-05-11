@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet logicalFilePath="/v-1.0/2020-05-08--01-add-sensors.xml"
+               author="p.charkasau"
+               id="2020-05-08--01-add-sensor-table">
+        <createTable tableName="sensor">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model" type="varchar(15)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range_from" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="range_to" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="bigserial">
+                <constraints nullable="false"/>
+            </column>
+            <column name="unit_id" type="bigserial">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="varchar(40)">
+            </column>
+            <column name="description" type="varchar(200)">
+            </column>
+
+            <column name="deleted" type="boolean" defaultValueBoolean="false"/>
+            <column name="created" type="datetime" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified" type="datetime" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="sensor" columnName="id" columnDataType="bigserial"/>
+    </changeSet>
+
+    <changeSet logicalFilePath="/v-1.0/2020-05-08--01-add-sensors.xml"
+               author="p.charkasau"
+               id="2020-05-08--02-add-type-table">
+        <createTable tableName="type">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="type" columnName="id" columnDataType="bigserial"/>
+    </changeSet>
+
+    <changeSet logicalFilePath="/v-1.0/2020-05-08--01-add-sensors.xml"
+               author="p.charkasau"
+               id="2020-05-08--03-add-unit-table">
+        <createTable tableName="unit">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="unit" columnName="id" columnDataType="bigserial"/>
+    </changeSet>
+    
+    <changeSet logicalFilePath="/v-1.0/2020-05-08--01-add-sensors.xml"
+               author="p.charkasau"
+               id="2020-05-08--04-add-type-foreign-key">
+        <addForeignKeyConstraint baseTableName="sensor"
+                                 baseColumnNames="type_id"
+                                 constraintName="fk_sensor_type_id"
+                                 referencedTableName="type"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet logicalFilePath="/v-1.0/2020-05-08--01-add-sensors.xml"
+               author="p.charkasau"
+               id="2020-05-08--05-add-unit-foreign-key">
+        <addForeignKeyConstraint baseTableName="sensor"
+                                 baseColumnNames="unit_id"
+                                 constraintName="fk_sensor_unit_id"
+                                 referencedTableName="unit"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
