@@ -18,8 +18,8 @@ public class SensorDto implements Serializable {
     private String model;
     private int rangeFrom;
     private int rangeTo;
-    private TypeDto type;
-    private UnitDto unit;
+    private String type;
+    private String unit;
     private String location;
     private String description;
 

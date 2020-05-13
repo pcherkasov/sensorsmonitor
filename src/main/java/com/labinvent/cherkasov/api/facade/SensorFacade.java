@@ -24,4 +24,22 @@ public class SensorFacade {
                 .map(sensorConverter::convert)
                 .collect(Collectors.toList());
     }
+
+    public SensorDto findById(long id) {
+        return sensorConverter
+                .convert(sensorService.findById(id));
+    }
+
+    public SensorDto findByName(String name) {
+        return sensorConverter
+                .convert(sensorService.findByName(name));
+    }
+
+    public SensorDto saveSensor(SensorDto sensorDto) {
+        Sensor sensorFromDB = sensorService
+                .save(sensorConverter.convert(sensorDto));
+        return sensorConverter.convert(sensorFromDB);
+    }
+
+
 }
