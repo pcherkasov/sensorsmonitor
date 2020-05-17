@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TypeServiceImpl implements TypeService {
 
-    TypeRepository repository;
+    private final TypeRepository repository;
 
     @Override
     public List<Type> findAll() {

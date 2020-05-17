@@ -5,6 +5,8 @@ import com.labinvent.cherkasov.api.dto.SensorDto;
 import com.labinvent.cherkasov.core.model.Sensor;
 import com.labinvent.cherkasov.core.service.SensorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,17 @@ public class SensorFacade {
                 .stream()
                 .map(sensorConverter::convert)
                 .collect(Collectors.toList());
+    }
+
+    public Page<SensorDto> findAll(Pageable pageable) {
+        return sensorService
+                .findAll(pageable)
+                .map(sensorConverter::convert);
+    }
+
+    public Page<SensorDto> findAll(String query, Pageable pageable) {
+        return sensorService.searchAll(query, pageable)
+                .map(sensorConverter::convert);
     }
 
     public SensorDto findById(long id) {

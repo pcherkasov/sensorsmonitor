@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UnitServiceImpl implements UnitService {
 
-    UnitRepository repository;
+    private final UnitRepository repository;
 
     @Override
     public Unit findByName(String name) {
