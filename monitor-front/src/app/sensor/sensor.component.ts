@@ -38,6 +38,8 @@ export class SensorComponent implements OnInit {
               .subscribe(s => {
                 this.sensor = s
               });
+          } else {
+            this.sensor = new Sensor();
           }
         }
       )

@@ -1,11 +1,11 @@
-export interface Sensor {
-  id: bigint,
-  name: string,
-  model: string,
-  rangeFrom: number,
-  rangeTo: number,
-  type: string,
-  unit: string,
-  location: string,
-  description: string
+export class Sensor {
+  id: bigint = null;
+  name: string = null;
+  model: string = null;
+  rangeFrom: number = null;
+  rangeTo: number = null;
+  type: string = null;
+  unit: string = null;
+  location: string = null;
+  description: string = null;
 }
