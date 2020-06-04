@@ -14,8 +14,6 @@ public interface SensorService {
 
     Sensor findByName(String name);
 
-    List<Sensor> findAll();
-
     Page<Sensor> findAll(Pageable pageable);
 
     Page<Sensor> searchAll(String text,Pageable pageable);

@@ -1,0 +1,99 @@
+<div class="container">
+
+  <div class="header">
+    <h1 *ngIf="sensor == undefined">
+      Add Sensor
+    </h1>
+    <h1 *ngIf="sensor != undefined">
+      Edit Sensor
+    </h1>
+
+    <h1>{{types[0].name}}</h1>
+
+  </div>
+
+  <div class="fields">
+
+    <div class="field">
+      <div class="name">Name</div>
+
+      <div class="value">
+        <input
+          maxlength="15"
+          type="text"
+          [(ngModel)]="sensor.name"
+          [value]="sensor.name">
+      </div>
+
+    </div>
+
+    <div class="field">
+      <div class="name">Model</div>
+      <div class="value">
+        <input type="text"
+               [(ngModel)]="sensor.model"
+               [value]="sensor.model">
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="name">Range</div>
+      <div class="value range-container">
+
+        <input class="range-item from"
+               type="number"
+               [(ngModel)]="sensor.rangeFrom"
+               [value]="sensor.rangeFrom">
+
+        <input class="range-item to"
+               type="number"
+               [(ngModel)]="sensor.rangeTo"
+               [value]="sensor.rangeTo">
+
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="name">Type</div>
+      <div class="value">
+        <select name="type" [(ngModel)]="sensor.type">
+          <option *ngFor="let type of types" text="{{type.name}}"></option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="name">Unit</div>
+      <div class="value">
+        <select name="unit" [(ngModel)]="sensor.unit">
+          <option *ngFor="let unit of units" text="{{unit.name}}"></option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="name">Location</div>
+      <div class="value">
+        <input type="text"
+               [(ngModel)]="sensor.location"
+               [value]="sensor.location">
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="name">Description</div>
+      <div class="value">
+        <textarea class="description-area"
+                  type="text"
+                  [(ngModel)]="sensor.description"
+                  [value]=sensor.description></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <input class="action-button" type="submit" value="Save" (click)="saveSensor()" >
+    <input class="action-button" type="submit" value="Cancel" (click)="cancel()">
+  </div>
+
+</div>

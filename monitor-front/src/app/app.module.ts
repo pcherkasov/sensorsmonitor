@@ -7,7 +7,6 @@ import {SensorComponent} from './sensor/sensor.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {SensorsComponent} from "./sensors/sensors.component";
 import {AppComponent} from "./app.component";
-import {SensorService} from "./service/sensor.service";
 
 @NgModule({
   declarations: [

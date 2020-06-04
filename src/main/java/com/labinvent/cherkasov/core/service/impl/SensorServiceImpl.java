@@ -37,11 +37,6 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public List<Sensor> findAll() {
-        return sensorRepository.findAll();
-    }
-
-    @Override
     public Page<Sensor> findAll(Pageable pageable) {
         return sensorRepository.findAll(pageable);
     }
@@ -53,10 +48,8 @@ public class SensorServiceImpl implements SensorService {
 
     @Override
     public void deleteById(long id) {
-        Sensor sensor = sensorRepository
-                .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Sensor", "id", id));
+        Sensor sensor = findById(id);
         sensor.setDeleted(true);
-        sensorRepository.save(sensor);
+        save(sensor);
     }
 }

@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {Page} from "../model/Page";
-import {Sensor} from "../model/Sensor";
 import {Router} from "@angular/router";
 import {SensorService} from "../service/sensor.service";
 
@@ -11,19 +9,22 @@ import {SensorService} from "../service/sensor.service";
   styleUrls: ['./sensors.component.scss'],
   providers: [SensorService]
 })
-export class SensorsComponent implements OnInit{
+export class SensorsComponent implements OnInit {
 
   page: Page;
   searchQuery: string = ''
 
   constructor(
-    private http: HttpClient,
     private service: SensorService,
     private router: Router) {
   }
 
   ngOnInit() {
-    this.page = this.service.findAll();
+    this.service
+      .findAll()
+      .subscribe(page => {
+        this.page = page
+      });
   }
 
   counter(n: number) {
@@ -35,14 +36,14 @@ export class SensorsComponent implements OnInit{
     if (!this.searchQuery.trim()) {
       this.ngOnInit()
     }
-    this.http.get<Page>(`http://localhost:8080/api/sensor/search?q=${this.searchQuery}&page=0`)
+    this.service.search(this.searchQuery)
       .subscribe(response => {
         this.page = response
       })
   }
 
   selectPage(i: number) {
-    this.http.get<Page>(`http://localhost:8080/api/sensor?page=${i}`)
+    this.service.selectPage(i)
       .subscribe(response => {
         this.page = response
       })
@@ -64,6 +65,20 @@ export class SensorsComponent implements OnInit{
   }
 
   updateSensor(id: bigint) {
-    this.router.navigate(['/post', id])
+    if (id === null) {
+      this.router.navigate(['/sensor'])
+    }
+    this.router.navigate(['/sensor', id])
+  }
+
+  deleteSensor(event: Event, id: bigint, pageNumber: number) {
+    event.stopPropagation();
+    this.service.delete(id).subscribe(() => {
+      this.selectPage(pageNumber);
+    })
+  }
+
+  createSensor() {
+    this.updateSensor(null)
   }
 }

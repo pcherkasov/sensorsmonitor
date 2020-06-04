@@ -1,0 +1,82 @@
+$rangeItem: 35%;
+
+.container {
+  align-content: center;
+  width: 450px;
+  height: content-box;
+  border-style: solid;
+  padding: 10px 32px 16px;
+}
+
+.header {
+  h1 {
+    margin-left: 5px;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.fields {
+  width: 100%;
+  margin: 16px 5px;
+
+  .field {
+    display: flex;
+    align-content: center;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    width: 100%;
+
+    .name {
+      width: 120px;
+    }
+
+    .value {
+      width: 100%;
+
+      input, select {
+        width: 100%
+      }
+
+      .description-area {
+        width: 100%;
+        min-height: 200px;
+        resize: none;
+      }
+    }
+
+    .range-container {
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+
+      &:before {
+        content: "From";
+        left: 0;
+        position: absolute;
+      }
+
+      &:after {
+        content: "To";
+        right: calc(#{$rangeItem} + 10px);
+        position: absolute;
+      }
+
+      .range-item {
+        width: #{$rangeItem};
+      }
+
+      .from {
+        margin-right: 55px;
+      }
+    }
+  }
+}
+
+.footer {
+  .action-button {
+    margin-right: 20px;
+  }
+}

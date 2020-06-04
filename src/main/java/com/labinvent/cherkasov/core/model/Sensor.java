@@ -7,9 +7,11 @@ import lombok.Setter;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +25,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Where(clause = "deleted = 'false'")
 @Table(name = "sensor", schema = "public")
@@ -61,11 +64,11 @@ public class Sensor {
     @Column(name = "deleted")
     private boolean deleted;
 
-    @Column(name = "created", nullable = false, updatable = false)
+    @Column(name = "created", updatable = false)
     @CreatedDate
     private LocalDateTime created;
 
-    @Column(name = "modified", nullable = false)
+    @Column(name = "modified")
     @LastModifiedDate
     private LocalDateTime modified;
 }

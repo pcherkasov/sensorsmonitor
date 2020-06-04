@@ -5,7 +5,8 @@ import {SensorsComponent} from "./sensors/sensors.component";
 
 const routes: Routes = [
   {path: '', component: SensorsComponent},
-  {path: 'sensor/:id', component: SensorComponent},
+  {path: 'sensor', component: SensorComponent},
+  {path: 'sensor/:id', component: SensorComponent}
 ];
 
 @NgModule({

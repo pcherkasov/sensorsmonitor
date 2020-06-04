@@ -19,14 +19,6 @@ public class SensorFacade {
     private final SensorService sensorService;
     private final SensorConverter sensorConverter;
 
-    public List<SensorDto> findAll() {
-        List<Sensor> sensorsFromDb = sensorService.findAll();
-        return sensorsFromDb
-                .stream()
-                .map(sensorConverter::convert)
-                .collect(Collectors.toList());
-    }
-
     public Page<SensorDto> findAll(Pageable pageable) {
         return sensorService
                 .findAll(pageable)
@@ -54,5 +46,7 @@ public class SensorFacade {
         return sensorConverter.convert(sensorFromDB);
     }
 
-
+    public void deleteSensor(long id) {
+        sensorService.deleteById(id);
+    }
 }

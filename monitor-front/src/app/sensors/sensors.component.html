@@ -28,9 +28,16 @@
       </div>
 
       <div class="sensor" *ngFor="let sensor of page.content">
-        <div class="cell name" title="{{sensor.description}}"
+        <div class="cell name"
+             [class.admin]="true"
+             [class.viewer]="false"
+             title="{{sensor.description}}"
              (click)="updateSensor(sensor.id)">
-          {{sensor.name}}</div>
+          {{sensor.name}}
+        <div class="cross-button"
+             (click)="deleteSensor($event, sensor.id, page.number)"
+        title="delete {{sensor.name}}">x</div>
+        </div>
         <div class="cell">{{sensor.model}}</div>
         <div class="cell">{{sensor.type}}</div>
         <div class="cell">{{sensor.rangeFrom}}–{{sensor.rangeTo}}</div>
@@ -41,7 +48,10 @@
 
     <div class="footer">
       <div class="add_button">
-        <input type="submit" value="Add Sensor">
+        <input
+          type="submit"
+          value="Add Sensor"
+        (click)="createSensor()">
       </div>
       <div class="box">
         <div class="paging">
