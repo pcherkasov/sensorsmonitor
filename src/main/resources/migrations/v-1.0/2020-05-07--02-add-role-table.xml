@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet logicalFilePath="/v-1.0/2020-05-07--02-add-role-table.xml"
+               author="p.charkasau"
+               id="2020-05-07--01-add-role-table">
+        <createTable tableName="role">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="role" columnName="id" columnDataType="bigserial"/>
+    </changeSet>
+
+    <changeSet logicalFilePath="/v-1.0/2020-05-07--02-add-role-table.xml"
+               id="2020-05-07--02-add-user_role-table"
+               author="p.charkasau">
+        <createTable tableName="role_user">
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="users_id" type="bigserial">
+                <constraints nullable="false"/>
+            </column>
+            <column name="roles_id" type="bigserial">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement tableName="role_user" columnName="id" columnDataType="bigserial"/>
+    </changeSet>
+
+    <changeSet logicalFilePath="/v-1.0/2020-05-07--02-add-role-table.xml"
+               id="2020-05-07--03-add-user-foreign-key"
+               author="p.charkasau">
+        <addForeignKeyConstraint baseTableName="role_user"
+                                 baseColumnNames="users_id"
+                                 constraintName="fk_role_user_user"
+                                 referencedTableName="user"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet logicalFilePath="/v-1.0/2020-05-07--02-add-role-table.xml"
+               id="2020-05-07--04-add-role-foreign-key"
+               author="p.charkasau">
+        <addForeignKeyConstraint baseTableName="role_user"
+                                 baseColumnNames="roles_id"
+                                 constraintName="fk_role_user_role"
+                                 referencedTableName="role"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>

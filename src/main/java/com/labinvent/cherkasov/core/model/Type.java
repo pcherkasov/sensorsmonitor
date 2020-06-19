@@ -18,11 +18,11 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "type")
+@Table(name = "type", schema = "public")
 public class Type {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -31,11 +31,4 @@ public class Type {
     @OneToMany(mappedBy = "type")
     private List<Sensor> sensors;
 
-    @Column(name = "created", nullable = false, updatable = false)
-    @CreatedDate
-    private LocalDateTime created;
-
-    @Column(name = "modified", nullable = false)
-    @LastModifiedDate
-    private LocalDateTime modified;
 }

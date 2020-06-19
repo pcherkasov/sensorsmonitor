@@ -5,6 +5,8 @@ import com.labinvent.cherkasov.core.model.User;
 import com.labinvent.cherkasov.core.repository.UserRepository;
 import com.labinvent.cherkasov.core.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,5 +41,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository
+                .findByLogin(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

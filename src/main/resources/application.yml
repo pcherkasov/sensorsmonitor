@@ -1,28 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        http-only: true
+      timeout: 15m
 spring:
   base:
     datasource:
-      username: root
+      username: postgres
       password: root
-      driver-class-name: org.h2.Driver
+      driver-class-name: org.postgresql.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbc-url: jdbc:h2:mem:monitordb
-      connection-timeout: 30000
-      prepStmtCacheSize: 250
-      prepStmtCacheSqlLimit: 2048
-      useServerPrepStmts: true
+      jdbc-url: jdbc:postgresql://localhost:16000/monitor_db
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    database: h2
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    database: postgresql
     hibernate:
-      ddl-auto: create
-    properties:
-      hibernate:
-        temp:
-          use_jdbc_metadata_defaults: false
-    open-in-view: true
-    show-sql: true
+      ddl-auto: none
+    show-sql: false
   liquibase:
     enabled: true
     change-log: classpath:migrations/master.xml
-    user: root
-    password: root
+    user: liquibase_user
+    password: password
+  jackson:
+    default-property-inclusion: always
+    serialization:
+      write-dates-as-timestamps: false
+logging:
+  level:
+    web: DEBUG

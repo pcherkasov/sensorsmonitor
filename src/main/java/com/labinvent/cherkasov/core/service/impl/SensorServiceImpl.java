@@ -5,6 +5,8 @@ import com.labinvent.cherkasov.core.model.Sensor;
 import com.labinvent.cherkasov.core.repository.SensorRepository;
 import com.labinvent.cherkasov.core.service.SensorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,16 +37,19 @@ public class SensorServiceImpl implements SensorService {
     }
 
     @Override
-    public List<Sensor> findAll() {
-        return sensorRepository.findAll();
+    public Page<Sensor> findAll(Pageable pageable) {
+        return sensorRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Sensor> searchAll(String text, Pageable pageable) {
+        return sensorRepository.searchInAllFields(text, pageable);
     }
 
     @Override
     public void deleteById(long id) {
-        Sensor sensor = sensorRepository
-                .findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Sensor", "id", id));
+        Sensor sensor = findById(id);
         sensor.setDeleted(true);
-        sensorRepository.save(sensor);
+        save(sensor);
     }
 }

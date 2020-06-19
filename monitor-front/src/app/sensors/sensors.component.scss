@@ -1,0 +1,158 @@
+
+.container {
+  align-content: center;
+  width: 783px;
+  height: content-box;
+  border-style: solid;
+}
+
+.header {
+  h1 {
+    margin-left: 5px;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.searchPanel {
+  margin-left: 5px;
+}
+
+.cell {
+  width: 126px;
+  height: 20px;
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.table {
+  display: table;
+  width: auto;
+  margin: 10px 5px;
+
+  .name {
+    text-align: left;
+    padding-left: 5px;
+  }
+
+  .table_header {
+    display: flex;
+    align-content: center;
+
+    .cell {
+      font-weight: bold;
+      font-size: 1em;
+    }
+  }
+
+  .sensor {
+    display: flex;
+    align-content: center;
+    align-items: center;
+
+    .name {
+      background-color: white;
+      transition: 0.3s;
+      position: relative;
+
+    }
+
+    .viewer {
+        overflow: hidden;
+      .cross-button {
+        display: none;
+      }
+    }
+
+    .admin {
+      overflow: hidden;
+      .cross-button {
+        padding-left: 5px;
+        height: 100%;
+        border-left: 1px solid black;
+        overflow: hidden;
+        width: 0;
+        top: 0;
+        right: -6px;
+        position: absolute;
+        transition: 0.3s cubic-bezier(0, 0, 1, 1);
+      }
+    }
+
+    .name:hover {
+      background-color: #b4b4b4;
+      cursor: pointer;
+    }
+
+    .admin:hover {
+
+      .cross-button {
+        width: 15px;
+        display: block;
+      }
+    }
+  }
+}
+
+.current_page {
+  background-color: #b4b4b4;
+  font-weight: bold;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5px;
+
+  .paging {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .paging_button {
+      font-size: 0.8em;
+      border-radius: 2px;
+      border-color: #b4b4b4;
+      border-style: solid;
+      border-width: 1px;
+      background-color: #dbdbdb;
+      padding: 1px 4px 1px 4px;
+      margin: 3px;
+      transition: 0.3s;
+    }
+
+    :hover {
+      background-color: #b4b4b4;
+      cursor: pointer;
+    }
+  }
+}
+
+.add_button {
+  margin-left: 5px;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.page_counter {
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.logout {
+  margin: 30px;
+}
+
+.hidden {
+  display: none;
+}

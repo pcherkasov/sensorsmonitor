@@ -1,0 +1,79 @@
+<div class="container">
+
+  <div class="header">
+    <h1>
+      Sensor Table
+    </h1>
+    <a class="logout" href="http://localhost:8080/logout">Logout</a>
+  </div>
+
+  <div class="searchPanel">
+    <input type="text"
+           placeholder="enter text to search"
+           [(ngModel)]="searchQuery"
+           (input)="search()">
+    <button class="btn" (click)="search()">Search</button>
+  </div>
+
+  <div class="content">
+
+    <div class="table">
+      <div class="table_header">
+        <div class="cell name">Name</div>
+        <div class="cell">Model</div>
+        <div class="cell">Type</div>
+        <div class="cell">Range</div>
+        <div class="cell">Unit</div>
+        <div class="cell">Location</div>
+      </div>
+
+      <div class="sensor" *ngFor="let sensor of page.content">
+        <div class="cell name"
+             [class.admin]="true"
+             [class.viewer]="false"
+             title="{{sensor.description}}"
+             (click)="updateSensor(sensor.id)">
+          {{sensor.name}}
+        <div class="cross-button"
+             (click)="deleteSensor($event, sensor.id, page.number)"
+        title="delete {{sensor.name}}">x</div>
+        </div>
+        <div class="cell">{{sensor.model}}</div>
+        <div class="cell">{{sensor.type}}</div>
+        <div class="cell">{{sensor.rangeFrom}}–{{sensor.rangeTo}}</div>
+        <div class="cell">{{sensor.unit}}</div>
+        <div class="cell">{{sensor.location}}</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="add_button">
+        <input
+          type="submit"
+          value="Add Sensor"
+        (click)="createSensor()">
+      </div>
+      <div class="box">
+        <div class="paging">
+          <div class="paging_button"
+               [class.hidden]="page.first"
+               (click)="previousPage(page)">
+            Previous
+          </div>
+          <div class="paging_button" [class.current_page]="i === page.number"
+               *ngFor="let n of counter(page.totalPages), let i = index"
+               (click)="selectPage(i)">
+            {{i + 1 }}
+          </div>
+          <div class="paging_button"
+               [class.hidden]="page.last"
+               (click)="nextPage(page)">
+            Next
+          </div>
+        </div>
+        <div class="page_counter">Total: {{page.totalElements}}</div>
+      </div>
+    </div>
+
+  </div>
+</div>
